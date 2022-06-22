@@ -27,12 +27,11 @@ int main(void)
 		{
 		case 1:
 			printf("Digite o tipo ");
+				
 			break;
 		case 2:
 			printf("\n-> Escolha qual alimento dentre os seguintes voce deseja cadastrar uma receita nova:\n\n");
 			printf("---    --------\n|1| -> | Bolo |\n---    ---------\n|2| -> | Trufa |\n---    -------------\n|3| -> | Milkshake |\n---    -------------\n|4| -> | Pastel |\n---    ----------\n|5| -> | Pizza |\n---    ---------\n\n-> Opcao: \n\n");
-			
-			system("pause");
 			
 			break;
 		}
