@@ -16,7 +16,7 @@ int main(void)
 	
 	receita bolo[30], trufa[30], milkshake[30], pastel[30], pizza[30];
 	
-	int opcao, i=0; // Digite:\n1 - Consultar receitas ja cadastradas;\n2 - Registrar novas receitas.\n3 - Sair do programa\n\nResposta: 
+	int opcao, i=0;
 	
 	do{
 		puts("\t\t\t\t\t\t---------------\n\t\t\t\t\t\t|AI QUI DILICA|\n\t\t\t\t\t\t---------------\n");
