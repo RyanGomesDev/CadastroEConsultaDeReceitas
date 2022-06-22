@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 100
 #include <locale.h>
-//Quem digitar "Ai que dilica" é gay
+#define MAX 100
+
 int main(void)
 {
 	//Variaveis
@@ -13,23 +13,23 @@ int main(void)
  		char ingrediente[30][30];
  		char passos[30][50];
 	} receita;
-	int opcao, i=0;
+	
 	receita bolo[30], trufa[30], milkshake[30], pastel[30], pizza[30];
+	
+	int opcao, i=0;
+	
 	//Opcao
 	do{
-		do
-		{
-			printf("\nDigite:\n1 - Consultar receitas ja cadastradas;\n2 - Registrar novas receitas.\n3 - Sair do programa\n\nResposta: ");
-		 	scanf("%d", &opcao);
-	 	} while(opcao != 1 || opcao != 2 || opcao != 3);
+		printf("\nDigite:\n1 - Consultar receitas ja cadastradas;\n2 - Registrar novas receitas.\n3 - Sair do programa\n\nResposta: ");
+		scanf("%d", &opcao);
 	 	
-		
 		switch (opcao)
 		{
 		case 1://Cadastro
 			printf("Digite o tipo ")
 		}
-	while(opcao!=3);
+	} while(opcao!=3);
+	
  	system("pause");
  	return 0;
 }
