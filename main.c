@@ -24,7 +24,6 @@ int main(void)
 	receita bolo[30], trufa[30], milkshake[30], pastel[30], pizza[30];
 	
 	int Opcao1, Opcao2, i=0, ContadorCadastro, ContadorIngredientes=0, ContadorPassos=0, Exibir=0;
-	
 	/*Escrever
 	FILE *file;
 	file = fopen("teste.txt", "w");
@@ -62,7 +61,7 @@ int main(void)
 	return 0;
 	
 	/*** Fim Criação das variaveis ***/
-	/*** Inicio Programa ***/
+	/************************************** INICIO DO PROGRAMA *************************************/
 	do{
 		puts("\t\t\t\t\t\t---------------\n\t\t\t\t\t\t|AI QUI DILICA|\n\t\t\t\t\t\t---------------\n");
 		printf("\t\t\t\t\t---    ----------------------\n\t\t\t\t\t|1| -> | Cadastrar receita |\n\t\t\t\t\t---    ----------------------\n\t\t\t\t\t---    ---------------------\n\t\t\t\t\t|2| -> | Consultar receita |\n\t\t\t\t\t---    ---------------------\n\t\t\t\t\t---    --------------------\n\t\t\t\t\t|3| -> | Sair do programa |\n\t\t\t\t\t---    --------------------\n\t\t\t\t\t-> Opção: ");
@@ -70,7 +69,7 @@ int main(void)
 		
 		switch (Opcao1)
 		{
-			/*** Inicio Cadastro Receita ***/
+			/******************* FIM CADASTRO DAS RECEITAS *******************/
 			case 1:
 				printf("\n-> Escolha o tipo de receita que você quer cadastrar:\n\n");
 				printf("---    --------\n|1| -> | Bolo |\n---    ---------\n|2| -> | Trufa |\n---    -------------\n|3| -> | Milkshake |\n---    -------------\n|4| -> | Pastel |\n---    ----------\n|5| -> | Pizza |\n---    ---------\n\n-> Opção: ");
@@ -80,28 +79,34 @@ int main(void)
 				
 				switch (Opcao2)
 				{
-	/*******************CADASTRO DO BOLO**************************/
+					/*******************INICIO CADASTRO DO BOLO**************************/
 					case 1:
-						fopen("C:\\Users\\luanl\\OneDrive\\Área de Trabalho\\Trabalho - Fernando\\listabolo", "w");
 						
-						//Abertura da pasta bolo
-						for(ContadorCadastro=0; ContadorCadastro<=29; ContadorCadastro++)
-						{//Achar uma receita vazia
+						for(ContadorCadastro=0; ContadorCadastro<=29; ContadorCadastro++)//Achar uma receita vazia
+						{
 						
 							if(bolo[ContadorCadastro].id == 0)
 							{
+								
+								listabolo = fopen("receitaX.txt", "a");//Comando para abrir o arquivo(Incluir dados)
 								printf("-> Digite o nome da receita: ");
 								scanf(" %[^\n]s", bolo[ContadorCadastro].nome);
 								printf("\n\t\t\t\t\t---------------------------------------\n\t\t\t\t\t| Inicio do Cadastro dos Ingredientes |\n\t\t\t\t\t---------------------------------------\n\n");
 								printf("--> OBS: DIGITE ''fim'' PARA ENCERRAR O CADASTRO DOS INGREDIENTES <--\n\n");
-								
+								//Adicionando os dados no arquivo
+								fprintf(listabolo, "1\n");//Adicionando o ID
+								strcat(bolo[ContadorCadastro].nome, "\n");
+								fprintf(listabolo, bolo[ContadorCadastro].nome);//Adicionando o nome
+								//Fim da gravação de dados
 								while(ContadorIngredientes<=29) //Adicionando os ingredientes
 								{
 									printf("-> Adicione o ingrediente número %d: ", ContadorIngredientes+1);
 									scanf(" %[^\n]s", bolo[ContadorCadastro].ingrediente[ContadorIngredientes]);
-									//printf("O ingrediente escolhido foi: %s\n", bolo[contc].ingrediente[conting]);
-									
-									if(strcmp(bolo[ContadorCadastro].ingrediente[ContadorIngredientes], "fim"))
+									//Adicionando os dados no arquivo
+									strcat(bolo[ContadorCadastro].ingrediente[ContadorIngredientes], "\n");
+									fprintf(listabolo, bolo[ContadorCadastro].ingrediente[ContadorIngredientes]);
+									//Fim da gravação de dados
+									if(strcmp(bolo[ContadorCadastro].ingrediente[ContadorIngredientes], "fim\n"))
 									{
 										ContadorIngredientes++;
 									}
@@ -119,8 +124,11 @@ int main(void)
 								{
 									printf("-> Adicione o passo número %d: ", ContadorPassos+1);
 									scanf(" %[^\n]s", bolo[ContadorCadastro].passos[ContadorPassos]);
-									
-									if(strcmp(bolo[ContadorCadastro].passos[ContadorPassos], "fim"))
+									//Adicionando os dados no arquivo
+									strcat(bolo[ContadorCadastro].passos[ContadorPassos], "\n");
+									fprintf(listabolo, bolo[ContadorCadastro].passos[ContadorPassos]);
+									//Fim da gravação de dados
+									if(strcmp(bolo[ContadorCadastro].passos[ContadorPassos], "fim\n"))
 									{
 										ContadorPassos++;
 									}
@@ -130,13 +138,13 @@ int main(void)
 										ContadorPassos=31;
 									}
 								}
-								
 								printf("\t\t\t\t\t----------------------------------\n\t\t\t\t\t| Cadastro Realizado Com Sucesso |\n\t\t\t\t\t----------------------------------\n\n");
+								printf("\t\t\t\t\t----------------------------------\n\t\t\t\t\t| RECEITA CADASTRADA : |\n\t\t\t\t\t----------------------------------\n\n");
 								printf("-> Receita: %s\n\n-> Lista dos Ingredientes: \n\n", bolo[ContadorCadastro].nome);
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando os ingredientes
 								{
-									if(strcmp(bolo[ContadorCadastro].ingrediente[Exibir], "fim"))
+									if(strcmp(bolo[ContadorCadastro].ingrediente[Exibir], "fim\n"))
 									{
 										printf("-> %s\n", bolo[ContadorCadastro].ingrediente[Exibir]);
 									}
@@ -148,9 +156,9 @@ int main(void)
 								
 								printf("\n-> Passo a Passo: \n\n");
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando os Passos
 								{
-									if(strcmp(bolo[ContadorCadastro].passos[Exibir], "fim"))
+									if(strcmp(bolo[ContadorCadastro].passos[Exibir], "fim\n"))
 									{
 										printf("-> Passo número %d: %s\n", Exibir+1, bolo[ContadorCadastro].passos[Exibir]);
 									}
@@ -166,12 +174,23 @@ int main(void)
 						}
 						//Fechamento da lista bolo
 						fclose(listabolo);
-						break; //Fim Cadastro Bolo
-					
+						listabolo = fopen("listabolo.txt", "r");
+						if(listabolo == NULL){
+							printf("Arquivo nao pode ser aberto");
+							system("pause");
+							return 0;
+						}
+						char frase[100];
+						while(fgets(frase, 100, listabolo) != NULL){
+							printf("%s", frase);
+						}
+						fclose(listabolo);
+						break; 
+					/******************* FIM CADASTRO DO BOLO *******************/
+					/******************* INICIO CADASTRO DO TRUFA *******************/
 					case 2:
-						fopen("C:\\Users\\luanl\\OneDrive\\Área de Trabalho\\Trabalho - Fernando\\listatrufa", "w");
-						
-						//Abertura da pasta trufa
+						fopen("listatrufa.txt", "w");//Abertura da pasta trufa
+
 						for(ContadorCadastro=0; ContadorCadastro<=29; ContadorCadastro++)
 						{//Achar uma receita vazia
 						
@@ -186,8 +205,6 @@ int main(void)
 								{
 									printf("-> Adicione o ingrediente número %d: ", ContadorIngredientes+1);
 									scanf(" %[^\n]s", trufa[ContadorCadastro].ingrediente[ContadorIngredientes]);
-									//printf("O ingrediente escolhido foi: %s\n", trufa[contc].ingrediente[conting]);
-									
 									if(strcmp(trufa[ContadorCadastro].ingrediente[ContadorIngredientes], "fim"))
 									{
 										ContadorIngredientes++;
@@ -206,7 +223,6 @@ int main(void)
 								{
 									printf("-> Adicione o passo número %d: ", ContadorPassos+1);
 									scanf(" %[^\n]s", trufa[ContadorCadastro].passos[ContadorPassos]);
-									
 									if(strcmp(trufa[ContadorCadastro].passos[ContadorPassos], "fim"))
 									{
 										ContadorPassos++;
@@ -221,7 +237,7 @@ int main(void)
 								printf("\t\t\t\t\t----------------------------------\n\t\t\t\t\t| Cadastro Realizado Com Sucesso |\n\t\t\t\t\t----------------------------------\n\n");
 								printf("-> Receita: %s\n\n-> Lista dos Ingredientes: \n\n", trufa[ContadorCadastro].nome);
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando os ingredientes
 								{
 									if(strcmp(trufa[ContadorCadastro].ingrediente[Exibir], "fim"))
 									{
@@ -235,7 +251,7 @@ int main(void)
 								
 								printf("\n-> Passo a Passo: \n\n");
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando o passo a passo
 								{
 									if(strcmp(trufa[ContadorCadastro].passos[Exibir], "fim"))
 									{
@@ -253,12 +269,11 @@ int main(void)
 						}
 						//Fechamento da lista trufa
 						fclose(listatrufa);
-						break; //Fim Cadastro trufa
-						
+						break; 
+					/******************* FIM CADASTRO DO TRUFA *******************/
+					/******************* INICIO CADASTRO DO MILKSHAKE *******************/
 					case 3:
-						fopen("C:\\Users\\luanl\\OneDrive\\Área de Trabalho\\Trabalho - Fernando\\listamilkshake", "w");
-						
-						//Abertura da pasta milkshake
+						fopen("listamilkshake.txt", "w");//Abertura da pasta milkshake
 						for(ContadorCadastro=0; ContadorCadastro<=29; ContadorCadastro++)
 						{//Achar uma receita vazia
 						
@@ -273,7 +288,6 @@ int main(void)
 								{
 									printf("-> Adicione o ingrediente número %d: ", ContadorIngredientes+1);
 									scanf(" %[^\n]s", milkshake[ContadorCadastro].ingrediente[ContadorIngredientes]);
-									//printf("O ingrediente escolhido foi: %s\n", milkshake[contc].ingrediente[conting]);
 									
 									if(strcmp(milkshake[ContadorCadastro].ingrediente[ContadorIngredientes], "fim"))
 									{
@@ -308,7 +322,7 @@ int main(void)
 								printf("\t\t\t\t\t----------------------------------\n\t\t\t\t\t| Cadastro Realizado Com Sucesso |\n\t\t\t\t\t----------------------------------\n\n");
 								printf("-> Receita: %s\n\n-> Lista dos Ingredientes: \n\n", milkshake[ContadorCadastro].nome);
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando os Ingredientes
 								{
 									if(strcmp(milkshake[ContadorCadastro].ingrediente[Exibir], "fim"))
 									{
@@ -322,7 +336,7 @@ int main(void)
 								
 								printf("\n-> Passo a Passo: \n\n");
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando os Passos
 								{
 									if(strcmp(milkshake[ContadorCadastro].passos[Exibir], "fim"))
 									{
@@ -340,12 +354,13 @@ int main(void)
 						}
 						//Fechamento da lista milkshake
 						fclose(listamilkshake);
-						break; //Fim Cadastro milkshake
-						
+						break;
+					/******************* FIM CADASTRO DO MILKSHAKE *******************/
+					/******************* INICIO CADASTRO DO PASTEL *******************/
 					case 4:
-						fopen("C:\\Users\\luanl\\OneDrive\\Área de Trabalho\\Trabalho - Fernando\\listapastel", "w");
+						fopen("listapastel.txt", "w");//Abertura da pasta pastel
 						
-						//Abertura da pasta pastel
+						
 						for(ContadorCadastro=0; ContadorCadastro<=29; ContadorCadastro++)
 						{//Achar uma receita vazia
 						
@@ -360,8 +375,7 @@ int main(void)
 								{
 									printf("-> Adicione o ingrediente número %d: ", ContadorIngredientes+1);
 									scanf(" %[^\n]s", pastel[ContadorCadastro].ingrediente[ContadorIngredientes]);
-									//printf("O ingrediente escolhido foi: %s\n", pastel[contc].ingrediente[conting]);
-									
+
 									if(strcmp(pastel[ContadorCadastro].ingrediente[ContadorIngredientes], "fim"))
 									{
 										ContadorIngredientes++;
@@ -395,7 +409,7 @@ int main(void)
 								printf("\t\t\t\t\t----------------------------------\n\t\t\t\t\t| Cadastro Realizado Com Sucesso |\n\t\t\t\t\t----------------------------------\n\n");
 								printf("-> Receita: %s\n\n-> Lista dos Ingredientes: \n\n", pastel[ContadorCadastro].nome);
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando os ingredientes
 								{
 									if(strcmp(pastel[ContadorCadastro].ingrediente[Exibir], "fim"))
 									{
@@ -409,7 +423,7 @@ int main(void)
 								
 								printf("\n-> Passo a Passo: \n\n");
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando os passos
 								{
 									if(strcmp(pastel[ContadorCadastro].passos[Exibir], "fim"))
 									{
@@ -427,12 +441,11 @@ int main(void)
 						}
 						//Fechamento da lista pastel
 						fclose(listapastel);
-						break; //Fim Cadastro pastel
-						
+						break;
+					/******************* FIM CADASTRO DO PASTEL *******************/
+					/******************* INICO CADASTRO DA PIZZA *******************/
 					case 5:
-						fopen("C:\\Users\\luanl\\OneDrive\\Área de Trabalho\\Trabalho - Fernando\\listapizza", "w");
-						
-						//Abertura da pasta pizza
+						fopen("listapizza.txt", "w");//Abertura da pasta pizza
 						for(ContadorCadastro=0; ContadorCadastro<=29; ContadorCadastro++)
 						{//Achar uma receita vazia
 						
@@ -447,7 +460,6 @@ int main(void)
 								{
 									printf("-> Adicione o ingrediente número %d: ", ContadorIngredientes+1);
 									scanf(" %[^\n]s", pizza[ContadorCadastro].ingrediente[ContadorIngredientes]);
-									//printf("O ingrediente escolhido foi: %s\n", pizza[contc].ingrediente[conting]);
 									
 									if(strcmp(pizza[ContadorCadastro].ingrediente[ContadorIngredientes], "fim"))
 									{
@@ -482,7 +494,7 @@ int main(void)
 								printf("\t\t\t\t\t----------------------------------\n\t\t\t\t\t| Cadastro Realizado Com Sucesso |\n\t\t\t\t\t----------------------------------\n\n");
 								printf("-> Receita: %s\n\n-> Lista dos Ingredientes: \n\n", pizza[ContadorCadastro].nome);
 								
-								for(Exibir=0; Exibir<=29; Exibir++)
+								for(Exibir=0; Exibir<=29; Exibir++)//Amostrando os ingredientes
 								{
 									if(strcmp(pizza[ContadorCadastro].ingrediente[Exibir], "fim"))
 									{
@@ -494,7 +506,7 @@ int main(void)
 									}
 								}
 								
-								printf("\n-> Passo a Passo: \n\n");
+								printf("\n-> Passo a Passo: \n\n");//Amostrando os passos
 								
 								for(Exibir=0; Exibir<=29; Exibir++)
 								{
@@ -514,11 +526,20 @@ int main(void)
 						}
 						//Fechamento da lista pizza
 						fclose(listapizza);
-						break; //Fim Cadastro pizza
+						break; 
+					/******************* FIM CADASTRO DA PIZZA *******************/
 				}
 			break;
-			/*** Fim Cadastro Receita ***/
-			/*** Inicio Consulta Receita ***/
+				/******************* FIM CADASTRO DAS RECEITAS *******************/
+			
+			
+				/*---------------------------------------------------------------------
+				-----------------------------------------------------------------------
+			
+			
+				*/
+				/******************* INICIO CONSULTA DAS RECEITAS*******************/
+			
 			case 2:
 				printf("\n-> Escolha o tipo de receita que você quer consultar:\n\n");
 				printf("---    --------\n|1| -> | Bolo |\n---    ---------\n|2| -> | Trufa |\n---    -------------\n|3| -> | Milkshake |\n---    -------------\n|4| -> | Pastel |\n---    ----------\n|5| -> | Pizza |\n---    ---------\n\n-> Opção: \n\n");
