@@ -27,8 +27,8 @@ int main(void)
 	/*** Fim Criação das variaveis ***/
 	/************************************** INICIO DO PROGRAMA *************************************/
 	do{
-		puts("\t\t\t\t\t\t---------------\n\t\t\t\t\t\t|AI QUI DILICA|\n\t\t\t\t\t\t---------------\n");
-		printf("\t\t\t\t\t---    ----------------------\n\t\t\t\t\t|1| -> | Cadastrar receita |\n\t\t\t\t\t---    ----------------------\n\t\t\t\t\t---    ---------------------\n\t\t\t\t\t|2| -> | Consultar receita |\n\t\t\t\t\t---    ---------------------\n\t\t\t\t\t---    --------------------\n\t\t\t\t\t|3| -> | Sair do programa |\n\t\t\t\t\t---    --------------------\n\t\t\t\t\t-> Opção: ");
+		puts("\t\t\t\t\t    ---------------------\n\t\t\t\t\t    | BANCO DE RECEITAS |\n\t\t\t\t\t    ---------------------\n");
+		printf("\t\t\t\t\t---    ---------------------\n\t\t\t\t\t|1| -> | Cadastrar receita |\n\t\t\t\t\t---    ---------------------\n\t\t\t\t\t---    ---------------------\n\t\t\t\t\t|2| -> | Consultar receita |\n\t\t\t\t\t---    ---------------------\n\t\t\t\t\t---    --------------------\n\t\t\t\t\t|3| -> | Sair do programa |\n\t\t\t\t\t---    --------------------\n\t\t\t\t\t-> Opção: ");
 		scanf("%d", &OpcaoAcao);
 		
 		switch (OpcaoAcao)
